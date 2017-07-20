@@ -1,0 +1,63 @@
+image: kaiwinter/docker-java8-maven
+
+cache:
+  paths:
+    - .m2/
+
+variables:
+  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
+
+stages:
+  - build
+  - test
+  - package
+
+maven-build:
+  script:
+    - "mvn -f flink clean compile -B"
+  stage: build
+
+python_test:
+    stage: test
+    image: continuumio/anaconda3
+    script:
+    - conda install numpy
+    - conda install pandas
+    - cd python/traffic-prediction
+    - python -m unittest
+
+maven-test:
+  script:
+    - "mvn -f flink test -B"
+    - "cat flink/*/target/site/jacoco/index.html"
+  stage: test
+
+test-coverage:
+  script:
+    - "mvn -f flink test -B"
+    - for file in flink/*/target/site/jacoco/index.html; do test `cat $file | perl -pe 's|^.*Total.*?([0-9]+)%.*|\1|'` -gt 10 || exit 1; done
+  stage: test
+  only:
+    - master
+
+checkstyle:
+  script:
+    - "mvn -f flink compile checkstyle:check -B"
+  stage: test
+
+findbugs:
+  script:
+    - "mvn -f flink compile findbugs:check -B"
+  stage: test
+
+pmd:
+  script:
+    - "mvn -f flink pmd:check -B"
+  stage: test
+
+maven-package:
+  script:
+    - "mvn -f flink package -B"
+  stage: package
+#  only:
+#    - master

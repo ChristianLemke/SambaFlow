@@ -1,0 +1,100 @@
+html{
+    height:auto;
+}
+
+.mdl-data-table tbody .selected{
+    background-color: #AAA;
+}
+
+/*
+.mdl-data-table tbody tr:nth-child(odd) {
+  background-color: #EBEBEB;
+}
+*/
+
+.mdl-data-table tbody tr:hover{
+    background-color: #BBBBBB;
+}
+
+.mdl-data-table{
+    width: 550px;
+    margin: 5px;
+}
+
+.mdl-data-table tbody{
+    height: 100px;
+    overflow-y:auto;
+    overflow-x:auto;
+}
+
+thead {
+   color: #808080;
+   background: #999;
+   font-size: 34px;
+   font-weight: bold;
+   text-transform:uppercase;
+}
+
+
+.mdl-card {
+    background: rgba(255, 255, 255, 0.9);
+    width: auto;
+    min-height: 10px;
+    padding: 3px;
+}
+
+.mdl-card__title{
+    min-height: 60px;
+}
+
+#results.mdl-card {
+     min-height: 180px;
+     max-height: 500px;
+     width: auto;
+     overflow-y:auto;
+     overflow-x:auto;
+ }
+
+#details.mdl-card {
+    max-height: 350px;
+    width: auto;
+    overflow-y:auto;
+}
+
+#detailscell{
+    min-height: 380px;
+}
+
+#details li {
+    padding: 3px;
+    min-height: 0px;
+}
+
+.mdl-layout__container{
+    width: 600px;
+}
+
+#loaderProcess{
+    width: 600px;
+}
+
+#header{
+    width: 570px;
+    margin-left: 15px;
+}
+
+.mdl-list__item-avatar{
+    margin-right: 8px;
+}
+
+#header{
+    color:white;
+}
+
+.mdl-layout__tab{
+    color:white;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active{
+    color:white;
+}
